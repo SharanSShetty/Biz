@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-2: #10b981;
+      --accent-3: #f59e0b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+        Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+        "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 50% -10%, #1f2937, var(--bg));
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .container {
+      width: 100%;
+      max-width: 760px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    p.sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    marquee {
+      color: var(--accent-3);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    @media (min-width: 560px) {
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .title { font-weight: 600; }
+    .desc { color: var(--muted); font-size: 0.95rem; }
+    .btn {
+      appearance: none;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn.admin { background: var(--accent); }
+    .btn.owner { background: var(--accent-3); }
+    .btn.user  { background: var(--accent-2); }
+    .footer {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Welcome to SmallBizHub</h1>
+      <p class="sub">Choose how you want to continue</p>
+    </header>
+
+    <!-- Marquee Note -->
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      ⚠️ Note: This is just a static interface. You can log in using any credentials. Database is not connected.
+    </marquee>
+
+    <section class="grid">
+      <article class="card">
+        <div class="title">Admin</div>
+        <div class="desc">Administration panel login</div>
+        <a class="btn admin" href="{% url 'admin_login' %}">Admin Login</a>
+      </article>
+
+      <article class="card">
+        <div class="title">Owner</div>
+        <div class="desc">Business owner portal login</div>
+        <a class="btn owner" href="{% url 'ologin' %}">Owner Login</a>
+      </article>
+
+      <article class="card">
+        <div class="title">User</div>
+        <div class="desc">End user account login</div>
+        <a class="btn user" href="{% url 'login' %}">User Login</a>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
